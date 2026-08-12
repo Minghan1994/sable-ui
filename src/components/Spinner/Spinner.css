@@ -1,0 +1,43 @@
+.sable-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: inherit;
+}
+
+.sable-spinner[data-size="sm"] {
+  --sable-spinner-size: var(--sable-size-icon-sm);
+  --sable-spinner-track: 1.5px;
+}
+.sable-spinner[data-size="md"] {
+  --sable-spinner-size: var(--sable-size-icon-md);
+  --sable-spinner-track: 2px;
+}
+.sable-spinner[data-size="lg"] {
+  --sable-spinner-size: var(--sable-size-icon-lg);
+  --sable-spinner-track: 2.5px;
+}
+
+.sable-spinner__circle {
+  width: var(--sable-spinner-size);
+  height: var(--sable-spinner-size);
+  border-radius: var(--sable-radius-full);
+  border: var(--sable-spinner-track) solid color-mix(in srgb, currentColor 22%, transparent);
+  border-top-color: currentColor;
+  animation: sable-spin 620ms linear infinite;
+}
+
+@keyframes sable-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* Spinning is the one animation that still has to communicate "busy", so it
+   slows to a crawl rather than stopping outright. */
+@media (prefers-reduced-motion: reduce) {
+  .sable-spinner__circle {
+    animation-duration: 2.4s;
+  }
+}

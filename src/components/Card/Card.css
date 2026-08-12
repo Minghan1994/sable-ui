@@ -1,0 +1,87 @@
+.sable-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-4);
+  min-width: 0;
+  border-radius: var(--sable-radius-xl);
+  background-color: var(--sable-color-surface);
+  color: var(--sable-color-text);
+  font-family: var(--sable-font-family-sans);
+  transition:
+    border-color var(--sable-duration-fast) var(--sable-easing-standard),
+    box-shadow var(--sable-duration-fast) var(--sable-easing-standard);
+}
+
+.sable-card[data-variant="outline"] {
+  border: var(--sable-border-width-thin) solid var(--sable-color-border);
+}
+.sable-card[data-variant="elevated"] {
+  border: var(--sable-border-width-thin) solid transparent;
+  box-shadow: var(--sable-shadow-md);
+}
+.sable-card[data-variant="filled"] {
+  border: var(--sable-border-width-thin) solid transparent;
+  background-color: var(--sable-color-bg-subtle);
+}
+
+.sable-card[data-padding="0"] {
+  padding: 0;
+}
+.sable-card[data-padding="3"] {
+  padding: var(--sable-space-3);
+}
+.sable-card[data-padding="4"] {
+  padding: var(--sable-space-4);
+}
+.sable-card[data-padding="5"] {
+  padding: var(--sable-space-5);
+}
+.sable-card[data-padding="6"] {
+  padding: var(--sable-space-6);
+}
+.sable-card[data-padding="8"] {
+  padding: var(--sable-space-8);
+}
+
+.sable-card[data-interactive]:hover {
+  border-color: var(--sable-color-border-strong);
+  box-shadow: var(--sable-shadow-lg);
+}
+
+.sable-card[data-interactive]:focus-within {
+  border-color: var(--sable-color-focus-ring);
+}
+
+.sable-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-1);
+}
+
+.sable-card__title {
+  margin: 0;
+  font-size: var(--sable-font-size-lg);
+  font-weight: var(--sable-font-weight-semibold);
+  line-height: var(--sable-line-height-snug);
+  letter-spacing: var(--sable-letter-spacing-tight);
+}
+
+.sable-card__description {
+  margin: 0;
+  color: var(--sable-color-text-muted);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-normal);
+}
+
+.sable-card__body {
+  min-width: 0;
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-normal);
+}
+
+.sable-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--sable-space-2);
+  flex-wrap: wrap;
+}

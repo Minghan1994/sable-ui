@@ -1,0 +1,201 @@
+/**
+ * Shared layout for checkbox and radio: an invisible native input sitting exactly
+ * on top of a drawn indicator. The input keeps the semantics, keyboard handling
+ * and form participation; the span next to it does the drawing.
+ */
+
+.sable-choice {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--sable-space-2) var(--sable-space-2-5);
+  font-family: var(--sable-font-family-sans);
+  color: var(--sable-color-text);
+}
+
+.sable-choice[data-size="sm"] {
+  --sable-choice-size: 1rem;
+  font-size: var(--sable-font-size-sm);
+}
+.sable-choice[data-size="md"] {
+  --sable-choice-size: 1.25rem;
+  font-size: var(--sable-font-size-sm);
+}
+
+.sable-choice__input {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: var(--sable-choice-size);
+  height: var(--sable-choice-size);
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sable-choice__input:disabled {
+  cursor: not-allowed;
+}
+
+.sable-choice__indicator {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--sable-choice-size);
+  height: var(--sable-choice-size);
+  /* Optically centres the box against the first line of the label. */
+  margin-block-start: calc((1lh - var(--sable-choice-size)) / 2);
+  background-color: var(--sable-color-surface);
+  border: var(--sable-border-width-thin) solid var(--sable-color-border-strong);
+  color: var(--sable-color-accent-on-solid);
+  transition:
+    background-color var(--sable-duration-fast) var(--sable-easing-standard),
+    border-color var(--sable-duration-fast) var(--sable-easing-standard);
+}
+
+.sable-choice__indicator > svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity var(--sable-duration-fast) var(--sable-easing-standard),
+    transform var(--sable-duration-fast) var(--sable-easing-standard);
+}
+
+.sable-choice__input:checked + .sable-choice__indicator,
+.sable-choice__input:indeterminate + .sable-choice__indicator {
+  background-color: var(--sable-color-accent-solid);
+  border-color: var(--sable-color-accent-solid);
+}
+
+.sable-choice__input:checked + .sable-choice__indicator > svg,
+.sable-choice__input:indeterminate + .sable-choice__indicator > svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sable-choice__input:not(:disabled):hover + .sable-choice__indicator {
+  border-color: var(--sable-color-accent-solid);
+}
+
+.sable-choice__input:focus-visible + .sable-choice__indicator {
+  outline: var(--sable-border-width-thick) solid var(--sable-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.sable-choice[data-invalid] .sable-choice__indicator {
+  border-color: var(--sable-color-danger-solid);
+}
+
+.sable-choice[data-disabled] {
+  color: var(--sable-color-text-disabled);
+}
+.sable-choice[data-disabled] .sable-choice__indicator {
+  background-color: var(--sable-color-bg-muted);
+  border-color: var(--sable-color-border);
+}
+.sable-choice[data-disabled] .sable-choice__input:checked + .sable-choice__indicator {
+  background-color: var(--sable-color-text-disabled);
+  border-color: var(--sable-color-text-disabled);
+}
+
+.sable-choice__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-1);
+  min-width: 0;
+}
+
+.sable-choice__label {
+  line-height: var(--sable-line-height-normal);
+  cursor: pointer;
+}
+
+.sable-choice[data-disabled] .sable-choice__label {
+  cursor: not-allowed;
+}
+
+.sable-choice__description {
+  color: var(--sable-color-text-muted);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-snug);
+}
+
+.sable-choice[data-disabled] .sable-choice__description {
+  color: var(--sable-color-text-disabled);
+}
+
+/* --- shapes --------------------------------------------------------------- */
+
+.sable-choice[data-shape="box"] .sable-choice__indicator {
+  border-radius: var(--sable-radius-sm);
+}
+
+.sable-choice[data-shape="circle"] .sable-choice__indicator {
+  border-radius: var(--sable-radius-full);
+}
+
+/* The radio's dot is drawn in CSS rather than as an icon. */
+.sable-choice[data-shape="circle"] .sable-choice__dot {
+  width: 44%;
+  height: 44%;
+  border-radius: var(--sable-radius-full);
+  background-color: currentColor;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--sable-duration-fast) var(--sable-easing-standard),
+    transform var(--sable-duration-fast) var(--sable-easing-standard);
+}
+
+.sable-choice__input:checked + .sable-choice__indicator .sable-choice__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- groups --------------------------------------------------------------- */
+
+.sable-choice-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-2-5);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--sable-font-family-sans);
+}
+
+.sable-choice-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-2-5);
+}
+
+.sable-choice-group[data-orientation="horizontal"] .sable-choice-group__items {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--sable-space-4);
+}
+
+.sable-choice-group__legend {
+  padding: 0;
+  margin-block-end: var(--sable-space-2);
+  color: var(--sable-color-text);
+  font-size: var(--sable-font-size-sm);
+  font-weight: var(--sable-font-weight-medium);
+}
+
+.sable-choice-group__description {
+  margin-block-start: calc(var(--sable-space-2) * -1);
+  margin-block-end: var(--sable-space-2);
+  color: var(--sable-color-text-muted);
+  font-size: var(--sable-font-size-sm);
+}
+
+.sable-choice-group__error {
+  color: var(--sable-color-danger-text);
+  font-size: var(--sable-font-size-sm);
+}

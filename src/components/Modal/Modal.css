@@ -1,0 +1,105 @@
+.sable-modal {
+  padding: 0;
+  border: 0;
+  background: none;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* The element itself is the click surface for the backdrop, so it fills the
+     viewport and centres the panel. */
+  display: grid;
+  place-items: center;
+}
+
+.sable-modal:not([open]) {
+  display: none;
+}
+
+.sable-modal::backdrop {
+  background-color: var(--sable-color-overlay);
+}
+
+.sable-modal__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-4);
+  width: min(100% - var(--sable-space-8), var(--sable-modal-width));
+  max-height: calc(100dvh - var(--sable-space-16));
+  padding: var(--sable-space-5);
+  border: var(--sable-border-width-thin) solid var(--sable-color-border);
+  border-radius: var(--sable-radius-xl);
+  background-color: var(--sable-color-surface-raised);
+  color: var(--sable-color-text);
+  font-family: var(--sable-font-family-sans);
+  box-shadow: var(--sable-shadow-xl);
+  animation: sable-modal-in var(--sable-duration-normal) var(--sable-easing-entrance);
+}
+
+.sable-modal[data-size="sm"] {
+  --sable-modal-width: 24rem;
+}
+.sable-modal[data-size="md"] {
+  --sable-modal-width: 32rem;
+}
+.sable-modal[data-size="lg"] {
+  --sable-modal-width: 44rem;
+}
+
+@keyframes sable-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--sable-space-2)) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sable-modal__panel {
+    animation: none;
+  }
+}
+
+.sable-modal__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--sable-space-4);
+}
+
+.sable-modal__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-1);
+  min-width: 0;
+}
+
+.sable-modal__title {
+  margin: 0;
+  font-size: var(--sable-font-size-lg);
+  font-weight: var(--sable-font-weight-semibold);
+  line-height: var(--sable-line-height-snug);
+  letter-spacing: var(--sable-letter-spacing-tight);
+}
+
+.sable-modal__description {
+  margin: 0;
+  color: var(--sable-color-text-muted);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-normal);
+}
+
+.sable-modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-normal);
+}
+
+.sable-modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--sable-space-2);
+}

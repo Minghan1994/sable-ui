@@ -1,0 +1,78 @@
+/* Canvas chrome for the docs site only — not part of the published library. */
+
+body {
+  margin: 0;
+  background-color: var(--sable-color-bg);
+}
+
+.sb-canvas {
+  padding: var(--sable-space-6);
+  min-height: 100%;
+}
+
+.sb-canvas .docs-story & {
+  padding: var(--sable-space-4);
+}
+
+/* Small helpers used by the foundation stories. */
+.sb-grid {
+  display: grid;
+  gap: var(--sable-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+}
+
+.sb-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-2);
+}
+
+.sb-swatch__chip {
+  height: var(--sable-space-12);
+  border-radius: var(--sable-radius-lg);
+  border: var(--sable-border-width-thin) solid var(--sable-color-border);
+}
+
+.sb-swatch__name {
+  font-family: var(--sable-font-family-mono);
+  font-size: var(--sable-font-size-xs);
+  color: var(--sable-color-text);
+  word-break: break-all;
+}
+
+.sb-swatch__value {
+  font-family: var(--sable-font-family-mono);
+  font-size: var(--sable-font-size-xs);
+  color: var(--sable-color-text-subtle);
+}
+
+.sb-ramp {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  border-radius: var(--sable-radius-lg);
+  overflow: hidden;
+  border: var(--sable-border-width-thin) solid var(--sable-color-border);
+}
+
+.sb-ramp__step {
+  height: var(--sable-space-12);
+  display: grid;
+  place-items: end center;
+  padding-block-end: var(--sable-space-1);
+  font-family: var(--sable-font-family-mono);
+  font-size: 0.625rem;
+}
+
+.sb-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sable-space-4);
+  flex-wrap: wrap;
+}
+
+.sb-label {
+  font-family: var(--sable-font-family-mono);
+  font-size: var(--sable-font-size-xs);
+  color: var(--sable-color-text-subtle);
+  min-width: 9rem;
+}

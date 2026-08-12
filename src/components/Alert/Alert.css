@@ -1,0 +1,79 @@
+.sable-alert {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: var(--sable-space-3);
+  padding: var(--sable-space-3) var(--sable-space-4);
+  border: var(--sable-border-width-thin) solid var(--sable-alert-border);
+  border-radius: var(--sable-radius-lg);
+  background-color: var(--sable-alert-bg);
+  color: var(--sable-color-text);
+  font-family: var(--sable-font-family-sans);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-normal);
+}
+
+.sable-alert[data-tone="info"] {
+  --sable-alert-bg: var(--sable-color-info-soft);
+  --sable-alert-border: var(--sable-color-info-border);
+  --sable-alert-icon: var(--sable-color-info-text);
+}
+.sable-alert[data-tone="success"] {
+  --sable-alert-bg: var(--sable-color-success-soft);
+  --sable-alert-border: var(--sable-color-success-border);
+  --sable-alert-icon: var(--sable-color-success-text);
+}
+.sable-alert[data-tone="warning"] {
+  --sable-alert-bg: var(--sable-color-warning-soft);
+  --sable-alert-border: var(--sable-color-warning-border);
+  --sable-alert-icon: var(--sable-color-warning-text);
+}
+.sable-alert[data-tone="danger"] {
+  --sable-alert-bg: var(--sable-color-danger-soft);
+  --sable-alert-border: var(--sable-color-danger-border);
+  --sable-alert-icon: var(--sable-color-danger-text);
+}
+
+.sable-alert__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--sable-alert-icon);
+  /* Sits on the first line of text rather than the top of the box. */
+  margin-block-start: calc((1lh - var(--sable-size-icon-md)) / 2);
+}
+
+.sable-alert__icon > svg {
+  width: var(--sable-size-icon-md);
+  height: var(--sable-size-icon-md);
+}
+
+.sable-alert__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-1);
+  min-width: 0;
+}
+
+.sable-alert__title {
+  margin: 0;
+  font-weight: var(--sable-font-weight-semibold);
+}
+
+.sable-alert__body {
+  color: var(--sable-color-text-muted);
+}
+
+.sable-alert__body > p {
+  margin: 0;
+}
+
+.sable-alert__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sable-space-2);
+  margin-block-start: var(--sable-space-2);
+}
+
+.sable-alert__dismiss {
+  margin-block-start: calc((1lh - var(--sable-size-control-sm)) / 2);
+}

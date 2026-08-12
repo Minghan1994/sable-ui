@@ -1,0 +1,86 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# sable-ui
+
+A small React design system built on plain CSS custom properties. It exists as a public
+reference — and as a place to work out the decisions a design system actually turns on,
+rather than the ones a component library gets to skip.
+
+## The shape of it
+
+**Tokens are the source of truth.** `tokens/*.json` is the only place a raw value is
+allowed to live. A build step compiles it into `tokens.css` (199 custom properties) and a
+typed TypeScript module. Nothing in the components hard-codes a colour or a length.
+
+**Two token layers.** Primitives are raw values — `color.brand.600`, `space.4`. Semantic
+tokens say what a value is *for* — `color-accent-solid`, `color-text-muted`. Components may
+only reference the semantic layer, so re-theming rewrites one layer and leaves every
+component untouched.
+
+**Themes are validated, not hoped for.** The build fails if the light and dark theme files
+declare different token names. Drift between themes is the failure mode that shows up
+months later as a single unreadable label in dark mode.
+
+**Styling is plain CSS.** No CSS-in-JS runtime, no build-time styling dependency. A
+consumer imports one stylesheet and can override any part of it with ordinary specificity.
+
+## Using it
+
+```bash
+npm install sable-ui
+```
+
+```tsx
+import { Button, Input, Stack } from 'sable-ui';
+import 'sable-ui/styles.css';
+
+export function SignIn() {
+  return (
+    <Stack gap={4} className="sable-root">
+      <Input label="Email" type="email" required />
+      <Button type="submit">Sign in</Button>
+    </Stack>
+  );
+}
+```
+
+## Theming
+
+The light theme is the default. Dark follows the operating system unless the page says
+otherwise:
+
+```html
+<html data-theme="dark">
+```
+
+`data-theme` works on any element, so a single panel can be themed independently of the
+page around it.
+
+To re-skin the system entirely, override the semantic layer — usually a dozen or so
+declarations, and never a component:
+
+```css
+:root {
+  --sable-color-accent-solid: #0f766e;
+  --sable-color-accent-solid-hover: #115e59;
+  --sable-color-accent-on-solid: #ffffff;
+}
+```
+
+## Accessibility
+
+Every solid background is paired with a text colour that clears 4.5:1. Focus is never
+removed, only restyled. Icon-only buttons cannot be constructed without a label — the prop
+is required by the type. Form controls carry their own `aria-describedby` and `aria-invalid`
+wiring, and the dark theme reaches contrast by inverting the fill/text relationship rather
+than by darkening a mid-tone until it goes muddy.
+
+The a11y addon panel runs axe against every story on this site.
+
+## What is deliberately missing
+
+No data table, no date picker, no toast, no combobox. Each of those is a project in its own
+right, and a half-built one is worse than none — the roadmap in the README says where they
+would go.

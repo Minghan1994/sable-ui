@@ -1,0 +1,136 @@
+/* Field scaffolding — label, help text, error. */
+
+.sable-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-1-5);
+  font-family: var(--sable-font-family-sans);
+  min-width: 0;
+}
+
+.sable-field__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sable-space-1);
+  color: var(--sable-color-text);
+  font-size: var(--sable-font-size-sm);
+  font-weight: var(--sable-font-weight-medium);
+  line-height: var(--sable-line-height-snug);
+}
+
+.sable-field__required {
+  color: var(--sable-color-danger-text);
+}
+
+.sable-field__description {
+  color: var(--sable-color-text-muted);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-snug);
+}
+
+.sable-field__error {
+  color: var(--sable-color-danger-text);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-snug);
+}
+
+/* ---------------------------------------------------------------------------
+   Shared control surface. Input, Textarea and Select all render this box, so
+   they cannot drift apart in height, radius, or focus treatment.
+   --------------------------------------------------------------------------- */
+
+.sable-control {
+  display: flex;
+  align-items: center;
+  gap: var(--sable-space-2);
+  min-width: 0;
+  background-color: var(--sable-color-surface);
+  border: var(--sable-border-width-thin) solid var(--sable-color-border);
+  border-radius: var(--sable-radius-md);
+  color: var(--sable-color-text);
+  transition:
+    border-color var(--sable-duration-fast) var(--sable-easing-standard),
+    box-shadow var(--sable-duration-fast) var(--sable-easing-standard);
+}
+
+.sable-control[data-size="sm"] {
+  min-height: var(--sable-size-control-sm);
+  padding-inline: var(--sable-space-2);
+  font-size: var(--sable-font-size-xs);
+}
+.sable-control[data-size="md"] {
+  min-height: var(--sable-size-control-md);
+  padding-inline: var(--sable-space-3);
+  font-size: var(--sable-font-size-sm);
+}
+.sable-control[data-size="lg"] {
+  min-height: var(--sable-size-control-lg);
+  padding-inline: var(--sable-space-3);
+  font-size: var(--sable-font-size-md);
+}
+
+.sable-control[data-full-width] {
+  width: 100%;
+}
+
+.sable-control:focus-within {
+  border-color: var(--sable-color-focus-ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sable-color-focus-ring) 28%, transparent);
+}
+
+.sable-control[data-invalid] {
+  border-color: var(--sable-color-danger-solid);
+}
+.sable-control[data-invalid]:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sable-color-danger-solid) 28%, transparent);
+}
+
+.sable-control[data-disabled] {
+  background-color: var(--sable-color-bg-muted);
+  color: var(--sable-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* The real <input> / <textarea> / <select>, stripped back to inherit the box. */
+.sable-control__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  line-height: var(--sable-line-height-normal);
+  outline: none;
+}
+
+.sable-control__input::placeholder {
+  color: var(--sable-color-text-subtle);
+}
+
+.sable-control__input:disabled {
+  cursor: not-allowed;
+  color: var(--sable-color-text-disabled);
+  -webkit-text-fill-color: var(--sable-color-text-disabled);
+  opacity: 1;
+}
+
+.sable-control__adornment {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--sable-color-text-subtle);
+}
+
+.sable-control__adornment > svg {
+  width: var(--sable-size-icon-md);
+  height: var(--sable-size-icon-md);
+}
+
+/* Multiline controls grow instead of sitting on a fixed control height. */
+.sable-control[data-multiline] {
+  align-items: stretch;
+  padding-block: var(--sable-space-2);
+}

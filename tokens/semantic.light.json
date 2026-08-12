@@ -1,0 +1,93 @@
+{
+  "$description": "Semantic tokens for the light theme. Components may only use tokens from this layer, never primitives. Every solid/on-solid pair below meets WCAG 2.1 AA (>= 4.5:1) for normal text.",
+  "color": {
+    "$type": "color",
+    "bg": {
+      "$value": "{color.white}",
+      "subtle": { "$value": "{color.neutral.50}" },
+      "muted": { "$value": "{color.neutral.100}" },
+      "emphasis": { "$value": "{color.neutral.200}" },
+      "inverse": { "$value": "{color.neutral.900}" }
+    },
+    "surface": {
+      "$value": "{color.white}",
+      "raised": { "$value": "{color.white}" },
+      "sunken": { "$value": "{color.neutral.50}" }
+    },
+    "text": {
+      "$value": "{color.neutral.900}",
+      "muted": { "$value": "{color.neutral.600}" },
+      "subtle": { "$value": "{color.neutral.500}" },
+      "disabled": { "$value": "{color.neutral.400}" },
+      "inverse": { "$value": "{color.neutral.50}" }
+    },
+    "border": {
+      "$value": "{color.neutral.200}",
+      "subtle": { "$value": "{color.neutral.100}" },
+      "strong": { "$value": "{color.neutral.300}" }
+    },
+    "accent": {
+      "solid": { "$value": "{color.brand.600}" },
+      "solid-hover": { "$value": "{color.brand.700}" },
+      "solid-active": { "$value": "{color.brand.800}" },
+      "soft": { "$value": "{color.brand.50}" },
+      "soft-hover": { "$value": "{color.brand.100}" },
+      "text": { "$value": "{color.brand.700}" },
+      "border": { "$value": "{color.brand.200}" },
+      "on-solid": { "$value": "{color.white}" }
+    },
+    "success": {
+      "solid": { "$value": "{color.green.700}" },
+      "solid-hover": { "$value": "{color.green.800}" },
+      "soft": { "$value": "{color.green.50}" },
+      "text": { "$value": "{color.green.700}" },
+      "border": { "$value": "{color.green.200}" },
+      "on-solid": { "$value": "{color.white}" }
+    },
+    "warning": {
+      "solid": { "$value": "{color.amber.500}" },
+      "solid-hover": { "$value": "{color.amber.600}" },
+      "soft": { "$value": "{color.amber.50}" },
+      "text": { "$value": "{color.amber.700}" },
+      "border": { "$value": "{color.amber.200}" },
+      "on-solid": { "$value": "{color.neutral.950}" }
+    },
+    "danger": {
+      "solid": { "$value": "{color.red.600}" },
+      "solid-hover": { "$value": "{color.red.700}" },
+      "solid-active": { "$value": "{color.red.800}" },
+      "soft": { "$value": "{color.red.50}" },
+      "soft-hover": { "$value": "{color.red.100}" },
+      "text": { "$value": "{color.red.700}" },
+      "border": { "$value": "{color.red.200}" },
+      "on-solid": { "$value": "{color.white}" }
+    },
+    "info": {
+      "solid": { "$value": "{color.sky.700}" },
+      "solid-hover": { "$value": "{color.sky.800}" },
+      "soft": { "$value": "{color.sky.50}" },
+      "text": { "$value": "{color.sky.700}" },
+      "border": { "$value": "{color.sky.200}" },
+      "on-solid": { "$value": "{color.white}" }
+    },
+    "focus-ring": { "$value": "{color.brand.500}" },
+    "overlay": {
+      "$value": "color-mix(in srgb, {color.neutral.950} 45%, transparent)"
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": {
+      "$value": "0 1px 2px 0 color-mix(in srgb, {color.neutral.900} 8%, transparent)"
+    },
+    "md": {
+      "$value": "0 2px 4px -2px color-mix(in srgb, {color.neutral.900} 10%, transparent), 0 4px 8px -2px color-mix(in srgb, {color.neutral.900} 8%, transparent)"
+    },
+    "lg": {
+      "$value": "0 4px 8px -4px color-mix(in srgb, {color.neutral.900} 12%, transparent), 0 12px 24px -6px color-mix(in srgb, {color.neutral.900} 10%, transparent)"
+    },
+    "xl": {
+      "$value": "0 8px 16px -8px color-mix(in srgb, {color.neutral.900} 16%, transparent), 0 24px 48px -12px color-mix(in srgb, {color.neutral.900} 14%, transparent)"
+    }
+  }
+}

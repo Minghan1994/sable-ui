@@ -1,0 +1,91 @@
+/* Same idea as Button: the tone supplies local variables, the variant paints. */
+
+.sable-badge {
+  --sable-badge-solid-bg: var(--sable-color-bg-inverse);
+  --sable-badge-solid-fg: var(--sable-color-text-inverse);
+  --sable-badge-soft-bg: var(--sable-color-bg-muted);
+  --sable-badge-fg: var(--sable-color-text);
+  --sable-badge-border: var(--sable-color-border-strong);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sable-space-1-5);
+  border: var(--sable-border-width-thin) solid transparent;
+  border-radius: var(--sable-radius-full);
+  font-family: var(--sable-font-family-sans);
+  font-weight: var(--sable-font-weight-medium);
+  line-height: var(--sable-line-height-tight);
+  white-space: nowrap;
+}
+
+.sable-badge[data-tone="accent"] {
+  --sable-badge-solid-bg: var(--sable-color-accent-solid);
+  --sable-badge-solid-fg: var(--sable-color-accent-on-solid);
+  --sable-badge-soft-bg: var(--sable-color-accent-soft);
+  --sable-badge-fg: var(--sable-color-accent-text);
+  --sable-badge-border: var(--sable-color-accent-border);
+}
+.sable-badge[data-tone="success"] {
+  --sable-badge-solid-bg: var(--sable-color-success-solid);
+  --sable-badge-solid-fg: var(--sable-color-success-on-solid);
+  --sable-badge-soft-bg: var(--sable-color-success-soft);
+  --sable-badge-fg: var(--sable-color-success-text);
+  --sable-badge-border: var(--sable-color-success-border);
+}
+.sable-badge[data-tone="warning"] {
+  --sable-badge-solid-bg: var(--sable-color-warning-solid);
+  --sable-badge-solid-fg: var(--sable-color-warning-on-solid);
+  --sable-badge-soft-bg: var(--sable-color-warning-soft);
+  --sable-badge-fg: var(--sable-color-warning-text);
+  --sable-badge-border: var(--sable-color-warning-border);
+}
+.sable-badge[data-tone="danger"] {
+  --sable-badge-solid-bg: var(--sable-color-danger-solid);
+  --sable-badge-solid-fg: var(--sable-color-danger-on-solid);
+  --sable-badge-soft-bg: var(--sable-color-danger-soft);
+  --sable-badge-fg: var(--sable-color-danger-text);
+  --sable-badge-border: var(--sable-color-danger-border);
+}
+.sable-badge[data-tone="info"] {
+  --sable-badge-solid-bg: var(--sable-color-info-solid);
+  --sable-badge-solid-fg: var(--sable-color-info-on-solid);
+  --sable-badge-soft-bg: var(--sable-color-info-soft);
+  --sable-badge-fg: var(--sable-color-info-text);
+  --sable-badge-border: var(--sable-color-info-border);
+}
+
+.sable-badge[data-variant="solid"] {
+  background-color: var(--sable-badge-solid-bg);
+  color: var(--sable-badge-solid-fg);
+}
+.sable-badge[data-variant="soft"] {
+  background-color: var(--sable-badge-soft-bg);
+  color: var(--sable-badge-fg);
+}
+.sable-badge[data-variant="outline"] {
+  border-color: var(--sable-badge-border);
+  color: var(--sable-badge-fg);
+}
+
+.sable-badge[data-size="sm"] {
+  height: var(--sable-space-5);
+  padding-inline: var(--sable-space-2);
+  font-size: var(--sable-font-size-xs);
+}
+.sable-badge[data-size="md"] {
+  height: var(--sable-space-6);
+  padding-inline: var(--sable-space-2-5);
+  font-size: var(--sable-font-size-xs);
+}
+
+.sable-badge__dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  flex: none;
+  border-radius: var(--sable-radius-full);
+  background-color: currentColor;
+}
+
+.sable-badge[data-variant="solid"] .sable-badge__dot {
+  opacity: 0.8;
+}

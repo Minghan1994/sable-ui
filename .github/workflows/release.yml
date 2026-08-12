@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  # Required for npm provenance, which links the published tarball to this workflow run.
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+
+      # Opens (or updates) a "Version Packages" PR while changesets are pending;
+      # publishes to npm once that PR is merged.
+      # Stays dormant until an NPM_TOKEN secret exists, so the workflow does not
+      # fail on a repository that is not publishing yet.
+      - name: Create release PR or publish
+        if: env.NPM_TOKEN != ''
+        uses: changesets/action@v1
+        with:
+          version: npx changeset version
+          publish: npm run release
+          commit: 'chore: version packages'
+          title: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}

@@ -1,0 +1,115 @@
+.sable-switch {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--sable-space-2) var(--sable-space-2-5);
+  font-family: var(--sable-font-family-sans);
+  color: var(--sable-color-text);
+}
+
+.sable-switch[data-size="sm"] {
+  --sable-switch-height: 1.125rem;
+  --sable-switch-width: 2rem;
+  font-size: var(--sable-font-size-sm);
+}
+.sable-switch[data-size="md"] {
+  --sable-switch-height: 1.375rem;
+  --sable-switch-width: 2.375rem;
+  font-size: var(--sable-font-size-sm);
+}
+
+.sable-switch__control {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  margin-block-start: calc((1lh - var(--sable-switch-height)) / 2);
+}
+
+.sable-switch__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.sable-switch__input:disabled {
+  cursor: not-allowed;
+}
+
+.sable-switch__track {
+  display: flex;
+  align-items: center;
+  width: var(--sable-switch-width);
+  height: var(--sable-switch-height);
+  padding: 2px;
+  border-radius: var(--sable-radius-full);
+  background-color: var(--sable-color-bg-emphasis);
+  transition: background-color var(--sable-duration-normal) var(--sable-easing-standard);
+}
+
+.sable-switch__thumb {
+  width: calc(var(--sable-switch-height) - 4px);
+  height: calc(var(--sable-switch-height) - 4px);
+  border-radius: var(--sable-radius-full);
+  background-color: var(--sable-color-surface);
+  box-shadow: var(--sable-shadow-sm);
+  transition: transform var(--sable-duration-normal) var(--sable-easing-standard);
+}
+
+.sable-switch__input:checked + .sable-switch__track {
+  background-color: var(--sable-color-accent-solid);
+}
+
+.sable-switch__input:checked + .sable-switch__track .sable-switch__thumb {
+  transform: translateX(calc(var(--sable-switch-width) - var(--sable-switch-height)));
+}
+
+.sable-switch__input:focus-visible + .sable-switch__track {
+  outline: var(--sable-border-width-thick) solid var(--sable-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.sable-switch__input:not(:disabled):hover + .sable-switch__track {
+  background-color: color-mix(in srgb, var(--sable-color-bg-emphasis) 80%, var(--sable-color-text-subtle));
+}
+.sable-switch__input:not(:disabled):checked:hover + .sable-switch__track {
+  background-color: var(--sable-color-accent-solid-hover);
+}
+
+.sable-switch[data-disabled] {
+  color: var(--sable-color-text-disabled);
+}
+.sable-switch[data-disabled] .sable-switch__track {
+  opacity: 0.55;
+}
+
+.sable-switch__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sable-space-1);
+  min-width: 0;
+}
+
+.sable-switch__label {
+  line-height: var(--sable-line-height-normal);
+  cursor: pointer;
+}
+
+.sable-switch[data-disabled] .sable-switch__label {
+  cursor: not-allowed;
+}
+
+.sable-switch__description {
+  color: var(--sable-color-text-muted);
+  font-size: var(--sable-font-size-sm);
+  line-height: var(--sable-line-height-snug);
+}
+
+/* RTL: the thumb travels the other way. */
+[dir="rtl"] .sable-switch__input:checked + .sable-switch__track .sable-switch__thumb {
+  transform: translateX(calc((var(--sable-switch-width) - var(--sable-switch-height)) * -1));
+}

@@ -1,0 +1,93 @@
+{
+  "$description": "Semantic tokens for the dark theme. Must declare exactly the same token names as semantic.light.json — the build fails if the two themes drift apart. Dark solids follow the light-fill / dark-text rule, which keeps contrast above 4.5:1 without muddy mid-tones.",
+  "color": {
+    "$type": "color",
+    "bg": {
+      "$value": "{color.neutral.950}",
+      "subtle": { "$value": "{color.neutral.900}" },
+      "muted": { "$value": "{color.neutral.800}" },
+      "emphasis": { "$value": "{color.neutral.700}" },
+      "inverse": { "$value": "{color.neutral.100}" }
+    },
+    "surface": {
+      "$value": "{color.neutral.900}",
+      "raised": { "$value": "{color.neutral.800}" },
+      "sunken": { "$value": "{color.neutral.950}" }
+    },
+    "text": {
+      "$value": "{color.neutral.50}",
+      "muted": { "$value": "{color.neutral.300}" },
+      "subtle": { "$value": "{color.neutral.400}" },
+      "disabled": { "$value": "{color.neutral.600}" },
+      "inverse": { "$value": "{color.neutral.900}" }
+    },
+    "border": {
+      "$value": "{color.neutral.700}",
+      "subtle": { "$value": "{color.neutral.800}" },
+      "strong": { "$value": "{color.neutral.600}" }
+    },
+    "accent": {
+      "solid": { "$value": "{color.brand.400}" },
+      "solid-hover": { "$value": "{color.brand.300}" },
+      "solid-active": { "$value": "{color.brand.200}" },
+      "soft": { "$value": "color-mix(in srgb, {color.brand.400} 18%, transparent)" },
+      "soft-hover": { "$value": "color-mix(in srgb, {color.brand.400} 28%, transparent)" },
+      "text": { "$value": "{color.brand.300}" },
+      "border": { "$value": "color-mix(in srgb, {color.brand.400} 40%, transparent)" },
+      "on-solid": { "$value": "{color.neutral.950}" }
+    },
+    "success": {
+      "solid": { "$value": "{color.green.400}" },
+      "solid-hover": { "$value": "{color.green.300}" },
+      "soft": { "$value": "color-mix(in srgb, {color.green.400} 18%, transparent)" },
+      "text": { "$value": "{color.green.300}" },
+      "border": { "$value": "color-mix(in srgb, {color.green.400} 40%, transparent)" },
+      "on-solid": { "$value": "{color.neutral.950}" }
+    },
+    "warning": {
+      "solid": { "$value": "{color.amber.400}" },
+      "solid-hover": { "$value": "{color.amber.300}" },
+      "soft": { "$value": "color-mix(in srgb, {color.amber.400} 18%, transparent)" },
+      "text": { "$value": "{color.amber.300}" },
+      "border": { "$value": "color-mix(in srgb, {color.amber.400} 40%, transparent)" },
+      "on-solid": { "$value": "{color.neutral.950}" }
+    },
+    "danger": {
+      "solid": { "$value": "{color.red.400}" },
+      "solid-hover": { "$value": "{color.red.300}" },
+      "solid-active": { "$value": "{color.red.200}" },
+      "soft": { "$value": "color-mix(in srgb, {color.red.400} 18%, transparent)" },
+      "soft-hover": { "$value": "color-mix(in srgb, {color.red.400} 28%, transparent)" },
+      "text": { "$value": "{color.red.300}" },
+      "border": { "$value": "color-mix(in srgb, {color.red.400} 40%, transparent)" },
+      "on-solid": { "$value": "{color.neutral.950}" }
+    },
+    "info": {
+      "solid": { "$value": "{color.sky.400}" },
+      "solid-hover": { "$value": "{color.sky.300}" },
+      "soft": { "$value": "color-mix(in srgb, {color.sky.400} 18%, transparent)" },
+      "text": { "$value": "{color.sky.300}" },
+      "border": { "$value": "color-mix(in srgb, {color.sky.400} 40%, transparent)" },
+      "on-solid": { "$value": "{color.neutral.950}" }
+    },
+    "focus-ring": { "$value": "{color.brand.400}" },
+    "overlay": {
+      "$value": "color-mix(in srgb, {color.black} 65%, transparent)"
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": {
+      "$value": "0 1px 2px 0 color-mix(in srgb, {color.black} 40%, transparent)"
+    },
+    "md": {
+      "$value": "0 2px 4px -2px color-mix(in srgb, {color.black} 45%, transparent), 0 4px 8px -2px color-mix(in srgb, {color.black} 40%, transparent)"
+    },
+    "lg": {
+      "$value": "0 4px 8px -4px color-mix(in srgb, {color.black} 50%, transparent), 0 12px 24px -6px color-mix(in srgb, {color.black} 45%, transparent)"
+    },
+    "xl": {
+      "$value": "0 8px 16px -8px color-mix(in srgb, {color.black} 55%, transparent), 0 24px 48px -12px color-mix(in srgb, {color.black} 50%, transparent)"
+    }
+  }
+}

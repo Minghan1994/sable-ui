@@ -1,0 +1,39 @@
+/* <hr> arrives with a browser border and margin; both are cleared here. */
+.sable-divider {
+  flex: none;
+  margin: 0;
+  border: 0;
+  background-color: var(--sable-color-border);
+}
+
+.sable-divider[data-orientation="horizontal"] {
+  width: 100%;
+  height: var(--sable-border-width-thin);
+}
+
+.sable-divider[data-orientation="vertical"] {
+  align-self: stretch;
+  width: var(--sable-border-width-thin);
+  min-height: var(--sable-space-4);
+}
+
+.sable-divider--labelled {
+  display: flex;
+  align-items: center;
+  gap: var(--sable-space-3);
+  width: 100%;
+}
+
+.sable-divider--labelled .sable-divider {
+  flex: 1 1 auto;
+}
+
+.sable-divider__label {
+  flex: none;
+  color: var(--sable-color-text-subtle);
+  font-family: var(--sable-font-family-sans);
+  font-size: var(--sable-font-size-xs);
+  font-weight: var(--sable-font-weight-medium);
+  letter-spacing: var(--sable-letter-spacing-wide);
+  text-transform: uppercase;
+}

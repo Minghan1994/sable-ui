@@ -1,0 +1,195 @@
+/**
+ * `data-tone` sets a palette of local custom properties; `data-variant` decides
+ * which of them to paint with. Adding a tone is one rule block, not four.
+ */
+
+.sable-button {
+  --sable-btn-solid-bg: var(--sable-color-accent-solid);
+  --sable-btn-solid-bg-hover: var(--sable-color-accent-solid-hover);
+  --sable-btn-solid-bg-active: var(--sable-color-accent-solid-active);
+  --sable-btn-solid-fg: var(--sable-color-accent-on-solid);
+  --sable-btn-soft-bg: var(--sable-color-accent-soft);
+  --sable-btn-soft-bg-hover: var(--sable-color-accent-soft-hover);
+  --sable-btn-soft-fg: var(--sable-color-accent-text);
+  --sable-btn-outline-border: var(--sable-color-accent-border);
+  --sable-btn-outline-fg: var(--sable-color-accent-text);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border: var(--sable-border-width-thin) solid transparent;
+  border-radius: var(--sable-radius-md);
+  font-family: var(--sable-font-family-sans);
+  font-weight: var(--sable-font-weight-medium);
+  line-height: var(--sable-line-height-tight);
+  letter-spacing: var(--sable-letter-spacing-normal);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--sable-duration-fast) var(--sable-easing-standard),
+    border-color var(--sable-duration-fast) var(--sable-easing-standard),
+    color var(--sable-duration-fast) var(--sable-easing-standard);
+}
+
+/* --- tones ---------------------------------------------------------------- */
+
+.sable-button[data-tone="neutral"] {
+  --sable-btn-solid-bg: var(--sable-color-bg-inverse);
+  --sable-btn-solid-bg-hover: color-mix(in srgb, var(--sable-color-bg-inverse) 88%, var(--sable-color-bg));
+  --sable-btn-solid-bg-active: color-mix(in srgb, var(--sable-color-bg-inverse) 78%, var(--sable-color-bg));
+  --sable-btn-solid-fg: var(--sable-color-text-inverse);
+  --sable-btn-soft-bg: var(--sable-color-bg-muted);
+  --sable-btn-soft-bg-hover: var(--sable-color-bg-emphasis);
+  --sable-btn-soft-fg: var(--sable-color-text);
+  --sable-btn-outline-border: var(--sable-color-border-strong);
+  --sable-btn-outline-fg: var(--sable-color-text);
+}
+
+.sable-button[data-tone="danger"] {
+  --sable-btn-solid-bg: var(--sable-color-danger-solid);
+  --sable-btn-solid-bg-hover: var(--sable-color-danger-solid-hover);
+  --sable-btn-solid-bg-active: var(--sable-color-danger-solid-active);
+  --sable-btn-solid-fg: var(--sable-color-danger-on-solid);
+  --sable-btn-soft-bg: var(--sable-color-danger-soft);
+  --sable-btn-soft-bg-hover: var(--sable-color-danger-soft-hover);
+  --sable-btn-soft-fg: var(--sable-color-danger-text);
+  --sable-btn-outline-border: var(--sable-color-danger-border);
+  --sable-btn-outline-fg: var(--sable-color-danger-text);
+}
+
+/* --- variants ------------------------------------------------------------- */
+
+.sable-button[data-variant="solid"] {
+  background-color: var(--sable-btn-solid-bg);
+  color: var(--sable-btn-solid-fg);
+}
+.sable-button[data-variant="solid"]:hover:not(:disabled) {
+  background-color: var(--sable-btn-solid-bg-hover);
+}
+.sable-button[data-variant="solid"]:active:not(:disabled) {
+  background-color: var(--sable-btn-solid-bg-active, var(--sable-btn-solid-bg-hover));
+}
+
+.sable-button[data-variant="soft"] {
+  background-color: var(--sable-btn-soft-bg);
+  color: var(--sable-btn-soft-fg);
+}
+.sable-button[data-variant="soft"]:hover:not(:disabled),
+.sable-button[data-variant="soft"]:active:not(:disabled) {
+  background-color: var(--sable-btn-soft-bg-hover, var(--sable-btn-soft-bg));
+}
+
+.sable-button[data-variant="outline"] {
+  background-color: transparent;
+  border-color: var(--sable-btn-outline-border);
+  color: var(--sable-btn-outline-fg);
+}
+.sable-button[data-variant="outline"]:hover:not(:disabled),
+.sable-button[data-variant="outline"]:active:not(:disabled) {
+  background-color: var(--sable-btn-soft-bg);
+}
+
+.sable-button[data-variant="ghost"] {
+  background-color: transparent;
+  color: var(--sable-btn-outline-fg);
+}
+.sable-button[data-variant="ghost"]:hover:not(:disabled),
+.sable-button[data-variant="ghost"]:active:not(:disabled) {
+  background-color: var(--sable-btn-soft-bg);
+}
+
+/* --- sizes ---------------------------------------------------------------- */
+
+.sable-button[data-size="sm"] {
+  height: var(--sable-size-control-sm);
+  padding-inline: var(--sable-space-2-5);
+  font-size: var(--sable-font-size-xs);
+  gap: var(--sable-space-1-5);
+}
+.sable-button[data-size="md"] {
+  height: var(--sable-size-control-md);
+  padding-inline: var(--sable-space-3);
+  font-size: var(--sable-font-size-sm);
+  gap: var(--sable-space-2);
+}
+.sable-button[data-size="lg"] {
+  height: var(--sable-size-control-lg);
+  padding-inline: var(--sable-space-4);
+  font-size: var(--sable-font-size-md);
+  gap: var(--sable-space-2);
+}
+
+.sable-button[data-full-width] {
+  display: flex;
+  width: 100%;
+}
+
+/* --- states --------------------------------------------------------------- */
+
+.sable-button:focus-visible {
+  outline: var(--sable-border-width-thick) solid var(--sable-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.sable-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* --- inner layout --------------------------------------------------------- */
+
+.sable-button__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+}
+
+/* Hiding rather than removing the label keeps the button from resizing mid-request. */
+.sable-button[data-loading] .sable-button__content {
+  visibility: hidden;
+}
+
+.sable-button__loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.sable-button__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.sable-button[data-size="sm"] .sable-button__icon > svg {
+  width: var(--sable-size-icon-sm);
+  height: var(--sable-size-icon-sm);
+}
+.sable-button[data-size="md"] .sable-button__icon > svg,
+.sable-button[data-size="lg"] .sable-button__icon > svg {
+  width: var(--sable-size-icon-md);
+  height: var(--sable-size-icon-md);
+}
+
+/* --- icon-only ------------------------------------------------------------ */
+
+.sable-button[data-icon-only] {
+  padding-inline: 0;
+  aspect-ratio: 1;
+}
+.sable-button[data-icon-only][data-size="sm"] {
+  width: var(--sable-size-control-sm);
+}
+.sable-button[data-icon-only][data-size="md"] {
+  width: var(--sable-size-control-md);
+}
+.sable-button[data-icon-only][data-size="lg"] {
+  width: var(--sable-size-control-lg);
+}

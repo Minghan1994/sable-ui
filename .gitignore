@@ -1,0 +1,16 @@
+node_modules/
+dist/
+storybook-static/
+coverage/
+
+# Generated from tokens/*.json by `npm run tokens`.
+src/styles/tokens.css
+src/tokens/index.ts
+
+*.log
+.DS_Store
+.claude/
+.vite/
+.env
+.env.*
+!.env.example

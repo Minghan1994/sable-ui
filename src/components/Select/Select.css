@@ -1,0 +1,28 @@
+.sable-select {
+  position: relative;
+}
+
+.sable-select__input {
+  appearance: none;
+  cursor: pointer;
+  /* Room for the chevron, which is positioned rather than laid out so that a
+     long option label never pushes it off the edge. */
+  padding-inline-end: var(--sable-space-6);
+}
+
+.sable-select__input:disabled {
+  cursor: not-allowed;
+}
+
+.sable-select__chevron {
+  position: absolute;
+  inset-inline-end: var(--sable-space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.sable-select[data-size="sm"] .sable-select__chevron > svg {
+  width: var(--sable-size-icon-sm);
+  height: var(--sable-size-icon-sm);
+}

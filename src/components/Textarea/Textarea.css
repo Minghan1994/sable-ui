@@ -1,0 +1,12 @@
+.sable-textarea {
+  display: block;
+  min-height: calc(var(--sable-size-control-md) * 1.5);
+}
+
+.sable-textarea[data-resize="none"] {
+  resize: none;
+}
+
+.sable-textarea[data-resize="vertical"] {
+  resize: vertical;
+}
