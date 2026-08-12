@@ -11,7 +11,8 @@ npm install     # runs the token build as part of `prepare`
 npm run dev     # Storybook on http://localhost:6006
 ```
 
-Node 20 or newer.
+Node 22 or newer (see `.nvmrc`). The published package supports Node 20, but the toolchain does
+not.
 
 ## The rules the codebase actually enforces
 
