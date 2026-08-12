@@ -1,30 +1,40 @@
-import { copyFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig, type Plugin, type UserConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 const entry = fileURLToPath(new URL('src/index.ts', import.meta.url));
 
+/**
+ * Storybook reuses this config for its own build, where declarations and a
+ * tokens copy make no sense. Both plugins below opt out unless a library bundle
+ * is what is actually being produced.
+ */
+const onlyForLibraryBuild = (config: UserConfig) => Boolean(config.build?.lib);
+
 /** Ship tokens.css on its own so a consumer can adopt the tokens without the components. */
 const copyTokens = (): Plugin => ({
   name: 'sable-copy-tokens',
+  apply: onlyForLibraryBuild,
   closeBundle() {
-    copyFileSync(
-      fileURLToPath(new URL('src/styles/tokens.css', import.meta.url)),
-      fileURLToPath(new URL('dist/tokens.css', import.meta.url)),
-    );
+    const outDir = fileURLToPath(new URL('dist/', import.meta.url));
+    mkdirSync(outDir, { recursive: true });
+    copyFileSync(fileURLToPath(new URL('src/styles/tokens.css', import.meta.url)), `${outDir}tokens.css`);
   },
 });
 
 export default defineConfig({
   plugins: [
     react(),
-    dts({
-      include: ['src'],
-      exclude: ['src/**/*.test.tsx', 'src/**/*.test.ts', 'src/**/*.stories.tsx'],
-      tsconfigPath: './tsconfig.build.json',
-    }),
+    {
+      ...dts({
+        include: ['src'],
+        exclude: ['src/**/*.test.tsx', 'src/**/*.test.ts', 'src/**/*.stories.tsx'],
+        tsconfigPath: './tsconfig.build.json',
+      }),
+      apply: onlyForLibraryBuild,
+    },
     copyTokens(),
   ],
   build: {
